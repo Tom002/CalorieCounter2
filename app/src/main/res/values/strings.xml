@@ -2,17 +2,34 @@
     <string name="app_name">CalorieCounter2</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_details">DetailsActivity</string>
     <string name="title_activity_edit_meal">EditMealActivity</string>
     <string name="calorieCountSample">600</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_add_meal">AddMealActivity</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="prev">Prev</string>
+    <string name="daily_summary">Daily summary</string>
+    <string name="total_calories">Total calories</string>
+    <string name="total_protein">Total protein:</string>
+    <string name="total_carbs">Total carbs:</string>
+    <string name="total_fats">Total fats:</string>
+    <string name="save_changes">Save changes</string>
+    <string name="meal_name">Meal name:</string>
+    <string name="calorie_count">Calorie count:</string>
+    <string name="paprikas_krumpli">Paprikás krumpli</string>
+    <string name="_600">600</string>
+    <string name="_40">40</string>
+    <string name="_50">50</string>
+    <string name="_20">20</string>
+    <string name="protein_g">Protein (g):</string>
+    <string name="carb_g">Carb (g):</string>
+    <string name="fat_g">Fat (g):</string>
+    <string name="date">Date:</string>
+    <string name="_2022_04_15">2022.04.15</string>
+    <string name="add_meal">Add meal</string>
 </resources>
