@@ -31,17 +31,13 @@ public class MealsAdapter (private val context: Context,
         holder.bind(meal)
     }
 
-    suspend fun deleteMeal(meal: Meal) {
+    fun deleteMeal(meal: Meal) {
         mealsViewModel.delete(meal)
     }
 
-    public fun editMeal(meal: Meal) {
+    fun editMeal(meal: Meal) {
         val intent = Intent(context, EditMealActivity::class.java)
-        intent.putExtra(EditMealActivity.KEY_NAME, meal.name)
-        intent.putExtra(EditMealActivity.KEY_CALORIES, meal.calories)
-        intent.putExtra(EditMealActivity.KEY_CARBS, meal.carbInGrams)
-        intent.putExtra(EditMealActivity.KEY_PROTEIN, meal.proteinInGrams)
-        intent.putExtra(EditMealActivity.KEY_FAT, meal.fatInGrams)
+        intent.putExtra(EditMealActivity.KEY_ID, meal.id)
         context.startActivity(intent)
     }
 

@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{meal.calories}"
+                android:text="@{String.valueOf(meal.calories)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/mealNameText"
@@ -58,6 +58,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="Edit"
+                android:onClick="@{() -> adapter.editMeal(meal)}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -69,6 +70,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="Delete"
+                android:onClick="@{() -> adapter.deleteMeal(meal)}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/editButton"
@@ -82,7 +84,7 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="start|top"
                 android:minHeight="48dp"
-                android:text="@{meal.name}"
+                android:text="@{String.valueOf(meal.name)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/deleteButton"
                 app:layout_constraintStart_toStartOf="parent" />

@@ -8,9 +8,6 @@ plugins {
 }
 
 android {
-    dataBinding {
-        enabled = true
-    }
     compileSdk 31
 
     defaultConfig {
@@ -39,6 +36,10 @@ android {
     buildFeatures {
         viewBinding true
         dataBinding true
+    }
+
+    dataBinding {
+        enabled = true
     }
 
 
@@ -93,6 +94,7 @@ dependencies {
     // Integration with observables
     implementation 'androidx.compose.runtime:runtime-livedata:1.1.1'
     implementation 'androidx.compose.runtime:runtime-rxjava2:1.1.1'
+    implementation 'net.danlew:android.joda:2.10.14'
 
     // UI Tests
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'

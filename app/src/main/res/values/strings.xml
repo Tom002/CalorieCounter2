@@ -13,4 +13,6 @@
     <string name="title_activity_details">DetailsActivity</string>
     <string name="title_activity_edit_meal">EditMealActivity</string>
     <string name="calorieCountSample">600</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_add_meal">AddMealActivity</string>
 </resources>

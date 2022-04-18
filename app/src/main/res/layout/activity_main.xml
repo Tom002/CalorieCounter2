@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -9,16 +10,14 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.MealsActivity">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
+            android:id="@+id/appBarLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:theme="@style/Theme.CalorieCounter2.AppBarOverlay"
@@ -35,15 +34,49 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <include
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/dateSelect"
-            layout="@layout/date_select"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/listMeals"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:onClick="@{() -> viewModel.previousDay()}"
+                android:text="Prev"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:text="@{viewModel.currentDate.toString(`yyyy:MM:dd`)}"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintStart_toEndOf="@+id/button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:onClick="@{() -> viewModel.nextDay()}"
+                android:text="Next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listMeals"
@@ -73,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="100 grams"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/proteinCountLabel"
                 app:layout_constraintTop_toBottomOf="@+id/calorieCountValue" />
@@ -83,17 +116,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="50 grams"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/fatCountLabel"
                 app:layout_constraintTop_toBottomOf="@+id/carbCountValue" />
 
             <TextView
-                android:id="@+id/dailySummaryText"
+                android:id="@+id/dailySummaryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="TextView"
+                android:text="Daily summary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -103,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
-                android:text="TextView"
+                android:text="Total calories"
                 app:layout_constraintEnd_toStartOf="@+id/calorieCountValue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -113,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
-                android:text="TextView"
+                android:text="3000 kcal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/calorieCountLabel"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -123,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="200 grams"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/calorieCountLabel"
                 app:layout_constraintTop_toBottomOf="@+id/proteinCountValue" />
@@ -133,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="Total protein:"
                 app:layout_constraintEnd_toStartOf="@+id/proteinCountValue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/calorieCountLabel" />
@@ -143,7 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="Total carbs:"
                 app:layout_constraintEnd_toStartOf="@+id/carbCountValue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/proteinCountLabel" />
@@ -153,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="Total fats:"
                 app:layout_constraintEnd_toStartOf="@+id/fatCountValue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/carbCountLabel" />

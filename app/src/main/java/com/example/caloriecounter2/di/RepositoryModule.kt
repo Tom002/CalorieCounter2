@@ -2,6 +2,7 @@ package com.example.caloriecounter2.di
 
 import com.example.caloriecounter2.network.MealService
 import com.example.caloriecounter2.persistence.MealDao
+import com.example.caloriecounter2.ui.addMeal.AddMealRepository
 import com.example.caloriecounter2.ui.editMeal.EditMealRepository
 import com.example.caloriecounter2.ui.main.MealsRepository
 import dagger.Module
@@ -31,5 +32,14 @@ object RepositoryModule {
         mealDao: MealDao
     ): EditMealRepository {
         return EditMealRepository(mealService, mealDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAddMealRepository(
+        mealService: MealService,
+        mealDao: MealDao
+    ): AddMealRepository {
+        return AddMealRepository(mealService, mealDao)
     }
 }

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="viewModel"
-            type="com.example.caloriecounter2.ui.editMeal.EditMealViewModel" />
+            type="com.example.caloriecounter2.ui.addMeal.AddMealViewModel" />
         <import type="com.example.caloriecounter2.helper.Converter"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/editMeal"
+        android:id="@+id/coordinatorLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.editMeal.EditMealActivity">
+        tools:context=".ui.addMeal.AddMealActivity">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout2"
+            android:id="@+id/appBarLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:theme="@style/Theme.CalorieCounter2.AppBarOverlay"
@@ -39,8 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="Save changes"
-            android:onClick="@{() -> viewModel.update()}"
+            android:onClick="@{() -> viewModel.add()}"
+            android:text="Add meal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -54,7 +54,7 @@
             android:text="Meal name:"
             app:layout_constraintEnd_toStartOf="@id/mealNameEdit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <TextView
             android:id="@+id/calorieCountTextView"
@@ -81,7 +81,7 @@
             android:text="@={viewModel.mealName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mealNameLabel"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <EditText
             android:id="@+id/calorieCountTextInput"
@@ -148,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="56dp"
             android:text="Protein (g):"
             app:layout_constraintEnd_toStartOf="@+id/proteinCountTextInput"
             app:layout_constraintStart_toStartOf="parent"
@@ -176,8 +176,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/carbCountTextView" />
 
+        <TextView
+            android:id="@+id/mealDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:text="Date:"
+            app:layout_constraintEnd_toStartOf="@+id/fatCountTextInput"
+            app:layout_constraintHorizontal_bias="0.413"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fatCountTextView" />
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:hint="2022.04.15"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:text="@={Converter.dateToString(viewModel.mealDate)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mealDateLabel"
+            app:layout_constraintTop_toBottomOf="@+id/fatCountTextInput" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
+
 
 

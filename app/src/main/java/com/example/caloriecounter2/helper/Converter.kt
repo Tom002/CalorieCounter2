@@ -2,20 +2,51 @@ package com.example.caloriecounter2.helper
 
 import android.widget.EditText
 import androidx.databinding.InverseMethod
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
+import java.util.*
+
 
 object Converter {
+
+    @InverseMethod("stringToInt")
+    @JvmStatic fun intToString(
+        value: Int
+    ): String {
+        return value.toString()
+    }
+
+    @JvmStatic fun stringToInt(
+        value: String
+    ): Int {
+        return value.toInt()
+    }
+
+    @InverseMethod("stringToDouble")
+    @JvmStatic fun doubleToString(
+        value: Double
+    ): String {
+        return value.toString()
+    }
+
+    @JvmStatic fun stringToDouble(
+        value: String
+    ): Double {
+        return value.toDouble()
+    }
+
     @InverseMethod("stringToDate")
     @JvmStatic fun dateToString(
-        view: EditText, oldValue: Long,
-        value: Long
+        value: Date
     ): String {
-        // Converts long to String.
+        return DateTime(value).toString("yyyy:MM:dd")
     }
 
     @JvmStatic fun stringToDate(
-        view: EditText, oldValue: String,
         value: String
-    ): Long {
-        // Converts String to long.
+    ): Date {
+        val fmt: DateTimeFormatter = DateTimeFormat.forPattern("yyyy:MM:dd")
+        return fmt.parseDateTime(value).toDate()
     }
 }

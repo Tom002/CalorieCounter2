@@ -13,6 +13,7 @@ import com.example.caloriecounter2.persistence.AppDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.joda.time.DateTime
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -27,26 +28,33 @@ class MealsViewModel @Inject constructor(
     private val _mealsRepository: MealsRepository
     lateinit var mealList: LiveData<List<Meal>>
 
-    private var _selectedDate : MutableLiveData<Date> = MutableLiveData<Date>(Calendar.getInstance().time)
-    val selectedDate: LiveData<Date> get() = _selectedDate;
+    val currentDate: LiveData<DateTime>
+        get() = _mealsRepository.selectedDate
 
     init {
         _mealsRepository = mealsRepository
         viewModelScope.launch {
-            mealList = _mealsRepository.getAllMealsForDate(selectedDate.value);
+            mealList = _mealsRepository.getAllMealsForDate();
         }
     }
 
     fun nextDay() {
-        _selectedDate.value = Date(2022,4, 3);
+        viewModelScope.launch {
+            _mealsRepository.nextDay()
+            mealList = _mealsRepository.getAllMealsForDate();
+        }
     }
 
     fun previousDay() {
-        _selectedDate.value = Date(2022,4,2)
+        viewModelScope.launch {
+            _mealsRepository.prevDay()
+            mealList = _mealsRepository.getAllMealsForDate();
+        }
     }
 
-    suspend fun delete(meal: Meal) {
-        _mealsRepository.delete(meal);
+    fun delete(meal: Meal) {
+        viewModelScope.launch {
+            _mealsRepository.delete(meal);
+        }
     }
-
 }
