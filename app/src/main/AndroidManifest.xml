@@ -16,11 +16,6 @@
             android:label="@string/title_activity_add_meal"
             android:theme="@style/Theme.CalorieCounter2.NoActionBar" />
         <activity
-            android:name=".ui.test.TestActivity"
-            android:exported="false"
-            android:label="@string/title_activity_test"
-            android:theme="@style/Theme.CalorieCounter2.NoActionBar" />
-        <activity
             android:name=".ui.editMeal.EditMealActivity"
             android:exported="false"
             android:label="@string/title_activity_edit_meal"
@@ -32,7 +27,6 @@
             android:theme="@style/Theme.CalorieCounter2.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
