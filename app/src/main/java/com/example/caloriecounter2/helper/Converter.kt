@@ -1,6 +1,5 @@
 package com.example.caloriecounter2.helper
 
-import android.widget.EditText
 import androidx.databinding.InverseMethod
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
