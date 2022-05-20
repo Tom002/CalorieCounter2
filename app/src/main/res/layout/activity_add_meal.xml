@@ -35,15 +35,26 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/add_meal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:onClick="@{() -> viewModel.add()}"
             android:text="@string/add_meal"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/add_meal_back"/>
+
+        <Button
+            android:id="@+id/add_meal_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{() -> viewModel.back()}"
+            android:text="Back"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/add_meal"/>
 
         <TextView
             android:id="@+id/mealNameLabel"

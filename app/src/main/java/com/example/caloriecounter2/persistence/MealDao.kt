@@ -8,13 +8,13 @@ import java.util.*
 @Dao
 interface MealDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMeal(meal: Meal)
+    suspend fun insertMeal(meal: Meal) : Long
 
     @Query("SELECT * FROM MEAL WHERE id = :id_")
     suspend fun getMeal(id_: Long): Meal?
 
-    @Query("SELECT * FROM Meal WHERE date = :date_")
-    fun getMealListForDate(date_: Date?): LiveData<List<Meal>>
+    @Query("SELECT * FROM Meal WHERE year = :year_ AND month = :month_ AND day = :day_")
+    suspend fun getMealListForDate(year_: Int, month_: Int, day_: Int): List<Meal>
 
     @Update()
     suspend fun updateMeal(meal: Meal)

@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.caloriecounter2.databinding.ActivityAddMealBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddMealActivity : AppCompatActivity() {
 
     private lateinit var addMealViewModel: AddMealViewModel

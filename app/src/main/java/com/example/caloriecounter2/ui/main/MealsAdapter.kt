@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.caloriecounter2.R
 import com.example.caloriecounter2.databinding.MealRowBinding
 import com.example.caloriecounter2.model.db.Meal
+import com.example.caloriecounter2.ui.addMeal.AddMealActivity
 import com.example.caloriecounter2.ui.editMeal.EditMealActivity
 
 public class MealsAdapter (private val context: Context,
