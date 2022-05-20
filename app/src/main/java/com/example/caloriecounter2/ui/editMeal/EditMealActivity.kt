@@ -32,5 +32,8 @@ class EditMealActivity : AppCompatActivity() {
 
         binding.viewModel = editMealViewModel
         binding.lifecycleOwner = this
+
+        val mealToEditId:Long = intent.getLongExtra(KEY_ID, 1).toLong()
+        editMealViewModel.loadMealToEdit(mealToEditId)
     }
 }

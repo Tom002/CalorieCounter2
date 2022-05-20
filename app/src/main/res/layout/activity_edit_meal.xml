@@ -35,15 +35,26 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/update_meal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="@string/save_changes"
             android:onClick="@{() -> viewModel.update()}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/edit_meal_back"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/edit_meal_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{() -> viewModel.back()}"
+            android:text="@string/back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/update_meal"/>
 
         <TextView
             android:id="@+id/mealNameLabel"

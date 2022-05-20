@@ -1,25 +1,25 @@
 package com.example.caloriecounter2.network
 
-import com.example.caloriecounter2.model.network.AddMealDto
+import com.example.caloriecounter2.model.network.AddOrEditMealDto
 import com.example.caloriecounter2.model.network.MealDto
 import okhttp3.ResponseBody
-import retrofit2.http.GET
 import retrofit2.Call
-import retrofit2.http.DELETE
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 import java.util.*
 
 interface MealService {
-    @GET("api/meals")
-    suspend fun fetchMealsForDate(date: Date): Call<List<MealDto>>
+    @GET("api/meal")
+    suspend fun fetchMealsForDate(@Query("year") year: Int?, @Query("month") month: Int?, @Query("day") day: Int?): List<MealDto>
 
-    @POST("api/meals")
-    suspend fun addMeal(meal: AddMealDto): Call<ResponseBody>
+    @GET("api/meal/{mealId}")
+    suspend fun getMealById(@Path("mealId") mealId:Long): MealDto
 
-    @PUT("api/meals/{mealId}")
-    suspend fun updateMeal(meal: MealDto): Call<ResponseBody>
+    @POST("api/meal")
+    suspend fun addMeal(@Body addMealDto: AddOrEditMealDto): MealDto
 
-    @DELETE("api/meals/{mealId}")
-    suspend fun deleteMeal(mealId: Long): Call<ResponseBody>
+    @PUT("api/meal/{mealId}")
+    suspend fun updateMeal(@Path("mealId") mealId:Long, @Body editMealDto: AddOrEditMealDto): ResponseBody
+
+    @DELETE("api/meal/{mealId}")
+    suspend fun deleteMeal(@Path("mealId") mealId: Long): ResponseBody
 }

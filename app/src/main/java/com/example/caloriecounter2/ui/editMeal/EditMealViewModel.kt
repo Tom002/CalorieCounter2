@@ -1,39 +1,73 @@
 package com.example.caloriecounter2.ui.editMeal
 
 import android.app.Application
+import android.content.Intent
+import android.widget.Toast
 import androidx.databinding.Bindable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.caloriecounter2.model.db.Meal
+import com.example.caloriecounter2.ui.main.MealsActivity
+import com.example.caloriecounter2.ui.main.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.util.*
 import javax.inject.Inject
 
 
 @HiltViewModel
 class EditMealViewModel @Inject constructor(
-    editMealRepository: EditMealRepository,
+    mealsRepository: MealsRepository,
     application: Application
 ) : AndroidViewModel(application) {
 
-    private val _editMealRepository: EditMealRepository
-    // private lateinit var mealToEdit: Meal
-    private var mealToEdit = Meal(1, "Teszt étkezés", 500, 50.0, 50.0, 10.0, Date(2022,4,15))
+    private val context = application.applicationContext
 
-    lateinit var mealName: MutableLiveData<String>
-    lateinit var mealCalorieCount: MutableLiveData<Int>
-    lateinit var mealProteinCount: MutableLiveData<Double>
-    lateinit var mealFatCount: MutableLiveData<Double>
-    lateinit var mealCarbCount: MutableLiveData<Double>
+    private val _mealsRepository: MealsRepository
+    private lateinit var mealToEdit: Meal
+
+    var mealName = MutableLiveData<String>("")
+    var mealCalorieCount = MutableLiveData<Int>(0)
+    var mealProteinCount = MutableLiveData<Double>(0.0)
+    var mealFatCount = MutableLiveData<Double>(0.0)
+    var mealCarbCount = MutableLiveData<Double>(0.0)
 
     init {
-        _editMealRepository = editMealRepository
+        _mealsRepository = mealsRepository
+    }
+
+    fun update() {
         viewModelScope.launch {
-            // TODO: Id átadás lista activity-ből
-            // mealToEdit = _editMealRepository.getMealById(1);
+            try {
+                _mealsRepository.update(
+                    Meal(
+                        mealToEdit.id,
+                        mealName.value ?: "",
+                        mealCalorieCount.value ?: 0,
+                        mealProteinCount.value ?: 0.0,
+                        mealCarbCount.value ?: 0.0,
+                        mealFatCount.value ?: 0.0,
+                        mealToEdit.year,
+                        mealToEdit.month,
+                        mealToEdit.day)
+                )
+                val toast = Toast.makeText(context, "Meal updated successfully", Toast.LENGTH_LONG)
+                toast.show()
+            }
+            catch (e: HttpException)
+            {
+                val toast = Toast.makeText(context, "Unexpected error while updating meal", Toast.LENGTH_LONG)
+                toast.show()
+            }
+        }
+    }
+
+    fun loadMealToEdit(mealId: Long) {
+        viewModelScope.launch {
+            mealToEdit = _mealsRepository.getMealById(mealId);
             mealName.value = mealToEdit.name
             mealCalorieCount.value = mealToEdit.calories
             mealProteinCount.value = mealToEdit.proteinInGrams
@@ -42,16 +76,9 @@ class EditMealViewModel @Inject constructor(
         }
     }
 
-    fun update() {
-        viewModelScope.launch {
-            _editMealRepository.update(Meal(
-                mealToEdit.id,
-                mealName.value ?: "",
-                mealCalorieCount.value ?: 0,
-                mealProteinCount.value ?: 0.0,
-                mealCarbCount.value ?: 0.0,
-                mealFatCount.value ?: 0.0,
-                mealToEdit.date))
-        }
+    fun back() {
+        val intent = Intent(context, MealsActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent)
     }
 }

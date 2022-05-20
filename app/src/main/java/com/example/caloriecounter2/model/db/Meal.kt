@@ -12,7 +12,9 @@ data class Meal   (
     val proteinInGrams: Double,
     val carbInGrams: Double,
     val fatInGrams: Double,
-    var date: Date,
+    val year: Int,
+    val month: Int,
+    val day: Int,
 )
 
 fun Meal.macroString(): String {
