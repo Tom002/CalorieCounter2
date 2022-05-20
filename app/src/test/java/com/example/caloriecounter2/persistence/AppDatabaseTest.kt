@@ -1,23 +1,20 @@
 package com.example.caloriecounter2.persistence
 
-import android.content.Context
 import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.caloriecounter2.model.db.Meal
-import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
-
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import java.io.IOException
 
 @RunWith(RobolectricTestRunner::class)
+@Config(sdk = [21])
 class AppDatabaseTest {
 
     private lateinit var mealDao: MealDao
@@ -25,10 +22,9 @@ class AppDatabaseTest {
 
     @Before
     fun setUp() {
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         db = Room.inMemoryDatabaseBuilder(
-            appContext, AppDatabase::class.java
-        ).build()
+            getApplicationContext(), AppDatabase::class.java
+        ).allowMainThreadQueries().build()
         mealDao = db.mealDao()
     }
 
