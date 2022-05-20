@@ -38,19 +38,8 @@ class MealsActivity : AppCompatActivity() {
         binding.listMeals.adapter = mealsAdapter
         binding.listMeals.layoutManager = LinearLayoutManager(this)
 
-        mealsAdapter.submitList(getSampleMeals())
-
-        /*
         mealsViewModel.mealList.observe(this, {
                 meals -> mealsAdapter.submitList(meals)
         })
-         */
-    }
-
-    fun getSampleMeals(): List<Meal> {
-        return listOf(
-            Meal(1, "Paprikás krumpli", 600, 50.1, 50.2, 10.3, Date(2022, 9, 10)),
-            Meal(2, "Csirk rizs", 600, 70.0, 40.0, 10.0, Date(2022, 9, 10)),
-        )
     }
 }
